@@ -1,0 +1,24 @@
+{
+    "recommendations": [
+        "aaron-bond.better-comments",
+        "christian-kohler.path-intellisense",
+        "vscode-icons-team.vscode-icons",
+        "ms-toolsai.jupyter",
+        "ms-python.python",
+        "charliermarsh.ruff",
+        "csstools.postcss",
+        "bradlc.vscode-tailwindcss",
+        "ecmel.vscode-html-css",
+        "sidthesloth.html5-boilerplate",
+        "formulahendry.auto-rename-tag",
+        "vincaslt.highlight-matching-tag",
+        "anteprimorac.html-end-tag-labels",
+        "Vue.volar",
+        "hollowtree.vue-snippets",
+        "sdras.vue-vscode-snippets",
+        "esbenp.prettier-vscode",
+        "dbaeumer.vscode-eslint",
+        "better-ts-errors.better-ts-errors",
+        "xabikos.JavaScriptSnippets"
+    ]
+}
