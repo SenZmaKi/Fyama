@@ -5,6 +5,48 @@ import pandas as pd
 from ml.dto import GeneralModelDto, MedicalModelDto
 
 
+general_prediction_request_json_schema = {
+    "type": "object",
+    "properties": {
+        "age": {"type": "integer"},
+        "sex": {"type": "boolean"},
+        "weight": {"type": "integer"},
+        "height": {"type": "integer"},
+        "children": {"type": "integer"},
+        "smoker": {"type": "boolean"},
+    },
+    "required": ["age", "sex", "weight", "height", "children", "smoker"],
+}
+
+medical_prediction_request_json_schema = {
+    "type": "object",
+    "properties": {
+        "age": {"type": "integer"},
+        "diabetes": {"type": "boolean"},
+        "blood_pressure_problems": {"type": "boolean"},
+        "any_transplants": {"type": "boolean"},
+        "any_chronic_diseases": {"type": "boolean"},
+        "height": {"type": "integer"},
+        "weight": {"type": "integer"},
+        "known_allergies": {"type": "boolean"},
+        "history_of_cancer_in_family": {"type": "boolean"},
+        "number_of_major_surgeries": {"type": "integer"},
+    },
+    "required": [
+        "age",
+        "diabetes",
+        "blood_pressure_problems",
+        "any_transplants",
+        "any_chronic_diseases",
+        "height",
+        "weight",
+        "known_allergies",
+        "history_of_cancer_in_family",
+        "number_of_major_surgeries",
+    ],
+}
+
+
 class GeneralPredictionRequestDto(TypedDict):
     age: int
     sex: bool
@@ -28,7 +70,6 @@ class MedicalPredictionRequestDto(TypedDict):
 
 
 MODELS_FOLDER = "ml/models"
-
 
 
 @cache
@@ -58,6 +99,7 @@ def predict_general(data: GeneralPredictionRequestDto) -> float:
     usd_to_ksh = 129.04
     price = prediction[0] * usd_to_ksh
     return price
+
 
 def predict_medical(data: MedicalPredictionRequestDto) -> float:
     dto = load_medical_model()
@@ -108,7 +150,7 @@ def test_predict_general() -> None:
 
 
 def test_predict_medical() -> None:
-    data: MedicalPredictionRequestDto  = {
+    data: MedicalPredictionRequestDto = {
         "age": 30,
         "diabetes": False,
         "blood_pressure_problems": False,

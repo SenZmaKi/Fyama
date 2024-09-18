@@ -15,7 +15,7 @@ def download_dataset(name: str, url: str) -> Path:
     temp_file_name = url.split("select=")[-1]
     if not Path("kaggle.json").is_file():
         print(
-            "Please place kaggle.json file in the notebook directory and current working directory\n Learn more at http://bit.ly/kaggle-creds"
+            "Please place kaggle.json file in the Jupyter Notebook directory \n Learn more at http://bit.ly/kaggle-creds"
         )
         exit(1)
     print(f"Downloading {name} dataset")
