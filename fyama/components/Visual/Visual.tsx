@@ -4,6 +4,7 @@ import {
   VictoryBar,
   VictoryChart,
   VictoryPie,
+  VictoryStack,
   VictoryTheme,
 } from "victory";
 
@@ -21,6 +22,14 @@ const Visual = () => {
     { month: "Oct 18", patients: 2000, cost: 5000 },
     { month: "Nov 18", patients: 1900, cost: 4900 },
     { month: "Dec 18", patients: 1800, cost: 4600 },
+  ];
+
+  const ageBmiData = [
+    { x: "20-30 years", Normal: 12, Overweight: 8, Obese: 5 },
+    { x: "31-40 years", Normal: 15, Overweight: 10, Obese: 7 },
+    { x: "41-50 years", Normal: 10, Overweight: 12, Obese: 8 },
+    { x: "51-60 years", Normal: 8, Overweight: 7, Obese: 9 },
+    { x: "61-70 years", Normal: 5, Overweight: 6, Obese: 4 },
   ];
 
   return (
@@ -62,6 +71,23 @@ const Visual = () => {
               y="patients"
               barWidth={15}
             />
+          </VictoryChart>
+
+          <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
+            {/* X-axis for age groups */}
+            <VictoryAxis />
+
+            {/* Y-axis for patient counts */}
+            <VictoryAxis dependentAxis tickFormat={(x) => `${x}`} />
+
+            <VictoryStack colorScale={["#4caf50", "#ff9800", "#f44336"]}>
+              {/* Normal BMI */}
+              <VictoryBar data={ageBmiData} x="x" y="Normal" />
+              {/* Overweight BMI */}
+              <VictoryBar data={ageBmiData} x="x" y="Overweight" />
+              {/* Obese BMI */}
+              <VictoryBar data={ageBmiData} x="x" y="Obese" />
+            </VictoryStack>
           </VictoryChart>
         </div>
         <div className="pie2">
