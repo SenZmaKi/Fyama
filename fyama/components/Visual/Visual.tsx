@@ -35,60 +35,61 @@ const Visual = () => {
   return (
     <div>
       <div className="lg:flex flex-row">
-        <div className="max-w-[700px]">
-          <VictoryChart
-            width={800}
-            theme={VictoryTheme.material}
-            domainPadding={20}
-          >
-            {/* X-axis for months */}
-            <VictoryAxis
-              tickValues={patientData.map((d) => d.month)}
-              tickFormat={patientData.map((d) => d.month)}
-            />
+        <div className="pie2">
+          <div className="max-w-[700px]">
+            <VictoryChart
+              width={800}
+              theme={VictoryTheme.material}
+              domainPadding={20}
+            >
+              {/* X-axis for months */}
+              <VictoryAxis
+                tickValues={patientData.map((d) => d.month)}
+                tickFormat={patientData.map((d) => d.month)}
+              />
 
-            {/* Y-axis for patients and cost */}
-            <VictoryAxis
-              dependentAxis
-              tickFormat={(x) => `$${x / 1000}k`} // Format cost values
-            />
+              {/* Y-axis for patients and cost */}
+              <VictoryAxis
+                dependentAxis
+                tickFormat={(x) => `$${x / 1000}k`} // Format cost values
+              />
 
-            {/* Area chart for costs */}
-            <VictoryArea
-              style={{
-                data: { fill: "rgba(0, 188, 212, 0.3)", stroke: "#00ACC1" },
-              }}
-              data={patientData}
-              x="month"
-              y="cost"
-            />
+              {/* Area chart for costs */}
+              <VictoryArea
+                style={{
+                  data: { fill: "rgba(0, 188, 212, 0.3)", stroke: "#00ACC1" },
+                }}
+                data={patientData}
+                x="month"
+                y="cost"
+              />
 
-            {/* Bar chart for patient numbers */}
-            <VictoryBar
-              style={{ data: { fill: "#0277BD" } }}
-              data={patientData}
-              x="month"
-              y="patients"
-              barWidth={15}
-            />
-          </VictoryChart>
+              {/* Bar chart for patient numbers */}
+              <VictoryBar
+                style={{ data: { fill: "#0277BD" } }}
+                data={patientData}
+                x="month"
+                y="patients"
+                barWidth={15}
+              />
+            </VictoryChart>
+            <VictoryChart theme={VictoryTheme.material}>
+              {/* X-axis for age groups */}
+              <VictoryAxis />
 
-          <VictoryChart theme={VictoryTheme.material} domainPadding={20}>
-            {/* X-axis for age groups */}
-            <VictoryAxis />
+              {/* Y-axis for patient counts */}
+              <VictoryAxis dependentAxis tickFormat={(x) => `${x}`} />
 
-            {/* Y-axis for patient counts */}
-            <VictoryAxis dependentAxis tickFormat={(x) => `${x}`} />
-
-            <VictoryStack colorScale={["#4caf50", "#ff9800", "#f44336"]}>
-              {/* Normal BMI */}
-              <VictoryBar data={ageBmiData} x="x" y="Normal" />
-              {/* Overweight BMI */}
-              <VictoryBar data={ageBmiData} x="x" y="Overweight" />
-              {/* Obese BMI */}
-              <VictoryBar data={ageBmiData} x="x" y="Obese" />
-            </VictoryStack>
-          </VictoryChart>
+              <VictoryStack colorScale={["#4caf50", "#ff9800", "#f44336"]}>
+                {/* Normal BMI */}
+                <VictoryBar data={ageBmiData} x="x" y="Normal" />
+                {/* Overweight BMI */}
+                <VictoryBar data={ageBmiData} x="x" y="Overweight" />
+                {/* Obese BMI */}
+                <VictoryBar data={ageBmiData} x="x" y="Obese" />
+              </VictoryStack>
+            </VictoryChart>
+          </div>
         </div>
         <div className="pie2">
           <div className="max-w-[300px]">
